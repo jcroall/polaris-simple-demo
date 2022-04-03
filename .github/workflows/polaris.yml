@@ -1,0 +1,23 @@
+name: Polaris
+on:
+  push:
+    branches: [ master, main ]
+
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Synopsys Polaris Security Testing
+        uses: jcroall/polaris-report-action@v0.1.0
+        with:
+          polaris-url: ${{ secrets.POLARIS_URL }}
+          polaris-access-token: ${{ secrets.POLARIS_ACCESS_TOKEN }}
+          debug: true
+          polaris-command: analyze -w
+          github-token: ${{ secrets.GITHUB_TOKEN }}
