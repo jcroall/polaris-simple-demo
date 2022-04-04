@@ -7,11 +7,12 @@ on:
     branches: [ master, main ]
 
 jobs:
-  env:
-    POLARIS_FILTERS: '{ "severity": ["High", "Medium"], "cwe": [ "319" ], "status": [ "New" ] }'
 
   build:
     runs-on: ubuntu-latest
+
+    env:
+      POLARIS_FILTERS: '{ "severity": ["High", "Medium"], "cwe": [ "319" ], "status": [ "New" ] }'
 
     steps:
       - uses: actions/checkout@v2
