@@ -7,6 +7,9 @@ on:
     branches: [ master, main ]
 
 jobs:
+  env:
+    POLARIS_FILTERS: '{ "severity": ["High", "Medium"], "cwe": [ "319" ], "status": [ "New" ] }'
+
   build:
     runs-on: ubuntu-latest
 
@@ -18,6 +21,7 @@ jobs:
         with:
           polaris-url: ${{ secrets.POLARIS_URL }}
           polaris-access-token: ${{ secrets.POLARIS_ACCESS_TOKEN }}
+          security-gate-filters: ${{ env.POLARIS_FILTERS }}
           debug: true
           polaris-command: analyze -w
           github-token: ${{ secrets.GITHUB_TOKEN }}
