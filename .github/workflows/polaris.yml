@@ -26,3 +26,4 @@ jobs:
           debug: true
           polaris-command: analyze -w
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
