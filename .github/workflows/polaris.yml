@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SECURITY_GATE_FILTER: '{ "severity": ["High", "Medium"], "cwe": [ "319" ], "status": [ "new" ] }'
+      SECURITY_GATE_FILTERS: '{ "severity": ["high", "medium"], "cwe": [ "319" ], "status": [ "new" ] }'
 
     steps:
       - uses: actions/checkout@v2
@@ -22,7 +22,7 @@ jobs:
         with:
           polaris-url: ${{ secrets.POLARIS_URL }}
           polaris-access-token: ${{ secrets.POLARIS_ACCESS_TOKEN }}
-          security-gate-filters: ${{ env.POLARIS_FILTERS }}
+          security-gate-filters: ${{ env.SECURITY_GATE_FILTERS }}
           debug: true
           polaris-command: analyze -w
           github-token: ${{ secrets.GITHUB_TOKEN }}
