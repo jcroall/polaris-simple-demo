@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      POLARIS_FILTERS: '{ "severity": ["High", "Medium"], "cwe": [ "319" ], "status": [ "New" ] }'
+      SECURITY_GATE_FILTER: '{ "severity": ["High", "Medium"], "cwe": [ "319" ], "status": [ "new" ] }'
 
     steps:
       - uses: actions/checkout@v2
