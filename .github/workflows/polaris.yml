@@ -8,7 +8,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
+    
+    env:
+      SECURITY_GATE_FILTERS: '{ "severity": ["high", "medium"], "cwe": [ "319" ], "status": [ "new" ] }'
 
     steps:
       - uses: actions/checkout@v2
@@ -30,5 +33,10 @@ jobs:
           polaris-url: ${{ secrets.POLARIS_URL }}
           polaris-access-token: ${{ secrets.POLARIS_ACCESS_TOKEN }}
           debug: true
+          # $CHANGE_SET_FILE_PATH will be automatically replaced with a path to a file
+          # listing the files changed in the GitHub Pull Request.
+          #
+          # If incremental is detected in the polaris command line, the results will be
+          # read from the local NEW issues output rather than via web services.
           polaris-command: analyze -w --incremental $CHANGE_SET_FILE_PATH
           github-token: ${{ secrets.GITHUB_TOKEN }}
