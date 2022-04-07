@@ -11,7 +11,7 @@ jobs:
     runs-on: self-hosted
     
     env:
-      SECURITY_GATE_FILTERS: '{ "severity": ["high", "medium"], "cwe": [ "319" ], "status": [ "new" ] }'
+      SECURITY_GATE_FILTERS: '{ "severity": ["High", "Medium"], "cwe": [ "319" ], "status": [ "new" ] }'
 
     steps:
       - uses: actions/checkout@v2
