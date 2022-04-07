@@ -24,6 +24,8 @@ jobs:
           polaris-access-token: ${{ secrets.POLARIS_ACCESS_TOKEN }}
           debug: true
           polaris-command: analyze -w
+          # Include the security gate filters - what should cause a policy failure
+          security-gate-filters: ${{ env.SECURITY_GATE_FILTERS }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Synopsys Polaris (Incremental Analysis)
@@ -39,4 +41,6 @@ jobs:
           # If incremental is detected in the polaris command line, the results will be
           # read from the local NEW issues output rather than via web services.
           polaris-command: analyze -w --incremental $CHANGE_SET_FILE_PATH
+          # Include the security gate filters - what should cause a policy failure
+          security-gate-filters: ${{ env.SECURITY_GATE_FILTERS }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
